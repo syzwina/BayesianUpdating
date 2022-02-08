@@ -14,20 +14,28 @@ void main(void)
     float Rgiven0 = 0, Rgiven1 = 0.333, Rgiven2 = 0.666, Rgiven3 = 3/3;
     float Bgiven0 = 3/3, Bgiven1 = 0.666, Bgiven2 = 0.333, Bgiven3 = 0;
     float R, B;
-    char choice[20];
+    char choice[8];
 
-    char red[] = "R";
-    char black[] = "B";
+    char red[8] = "R";
+    char black[8] = "B";
+    int resultR, resultB;
+    int counter = 0;
 
-    while (true){    
+    while (true)
+    {    
         // Input the Character
         printf("\nEnter the colour of sock(Red[R]/Black[B]) of your choice: ");
-        scanf("%c", &choice);
+        scanf("%1s", choice);
         if (getchar() != '\n') continue;
         printf("\n");
 
-        if (strcmp(choice,red) == 1) {
-            printf("You pulled out a red sock\n\n");
+        resultR = strcmp(choice, red);
+        resultB = strcmp(choice, black);
+
+        if (resultR == 0)
+        {
+            counter++;
+            printf("You pulled out a  Red  sock\n\n");
             // printf("%f", Rgiven1 * assumption1);
             R =   (Rgiven0 * assumption0) 
                 + (Rgiven1 * assumption1) 
@@ -41,7 +49,10 @@ void main(void)
             assumption3 = (Rgiven3 * assumption3) / R;
 
         }
-        else if (strcmp(choice,black) == 1) {
+
+        else if (resultB == 0)
+        {
+            counter++;
             printf("You pulled out a Black sock\n\n");
             // printf("%f", Rgiven1 * assumption1);
             B =   (Bgiven0 * assumption0) 
@@ -55,14 +66,38 @@ void main(void)
             assumption2 = (Bgiven2 * assumption2) / B;
             assumption3 = (Bgiven3 * assumption3) / B;
         }
-        else break;
 
-        printf("P(i)\n");
-        printf("______________\n");
-        printf("P(0): %f\n", assumption0);
-        printf("P(1): %f\n", assumption1);
-        printf("P(2): %f\n", assumption2);
-        printf("P(3): %f\n", assumption3);
+        else
+        {
+            printf("You pulled out a WEIRD sock\n\n");
+            printf("\033[A");
+            printf("\033[A");
+            printf("\033[A");
+            printf("\033[A");
+            printf("\033[A");
+            continue;
+        }
+
+        printf(" i | P(i)\n");
+        printf("~~~~~~~~~~~~~~\n");
+        printf(" 0 | %f\n", assumption0);
+        printf(" 1 | %f\n", assumption1);
+        printf(" 2 | %f\n", assumption2);
+        printf(" 3 | %f\n", assumption3);
+
+        printf("\033[A");
+        printf("\033[A");
+        printf("\033[A");
+        printf("\033[A");
+        printf("\033[A");
+        printf("\033[A");
+        printf("\033[A");
+        printf("\033[A");
+        printf("\033[A");
+        printf("\033[A");
+        printf("\033[A");
+        printf("\033[A");
+        printf("\033[A");
 
     }
 
